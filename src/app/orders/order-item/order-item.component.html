@@ -1,0 +1,70 @@
+<h4 class="display-4">Order Items</h4>
+<hr />
+
+<form #form="ngForm" autocomplete="off" (submit) = "formSubmit(form)">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label> Item Name</label>
+      <select
+        name="itemName"
+        #itemName="ngModel"
+        [(ngModel)]="formData.itemName"
+        class="form-control"
+        (change)= "updatePrice($event.target)"
+      >
+        <option id="0">-Select-</option>
+        <option *ngFor = "let item of items" id = "{{item.itemId}}">{{item.itemName}}</option>
+  
+      </select>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Item Price</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+          <input
+            type="text"
+            name="itemPrice"
+            #itemPrice="ngModel"
+            [(ngModel)]="formData.itemPrice"
+            class="form-control"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Item Quantity</label>
+      <input
+        type="text"
+        name="itemQuantity"
+        #itemQuantity="ngModel"
+        [(ngModel)]="formData.itemQuantity"
+        class="form-control"
+        (keyup) = "updateTotal()"
+      />
+    </div>
+    <div class="form-group">
+      <label>Item Total</label>
+      <input
+        type="text"
+        name="itemTotal"
+        #itemTotal="ngModel"
+        [(ngModel)]="formData.itemTotal"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-dark">
+      <i class="fa fa-database"></i> Submit
+    </button>
+    <button type="submit" class="btn btn-outline-dark ml-1" (click)="close()">
+      <i class="fa fa-close"></i>Close
+    </button>
+  </div>
+</form>

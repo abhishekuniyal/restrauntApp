@@ -1,0 +1,37 @@
+<div class="continer">
+  <table class="table table-light">
+    <thead class="thread-light">
+      <th>
+        Order No
+      </th>
+      <th>
+        P Method
+      </th>
+      <th>
+        Quanity
+      </th>
+      <th>
+        Total
+      </th>
+      <th>
+        <button type="submit" class="btn btn-dark" (click) = "createNewOrder()">
+          <i class="fa fa-database"></i> Create New
+        </button>
+      </th>
+    </thead>
+    <tbody *ngFor="let order of formdata; let i = index">
+      <td>{{ order.orderNo }}</td>
+      <td>{{ order.pMethod }}</td>
+      <td>{{ order.customerId }}</td>
+      <td>{{ order.gTotal }}</td>
+      <td>
+        <a
+          class="btn btn-sm btn-danger text-white ml-1"
+          (click)="deleteOrder(i)"
+        >
+          <i class="fa fa-trash"></i
+        ></a>
+      </td>
+    </tbody>
+  </table>
+</div>
