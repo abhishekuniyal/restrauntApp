@@ -1,0 +1,253 @@
+{
+    "source": "mockoon:1.7.0",
+    "data": [
+        {
+            "type": "environment",
+            "item": {
+                "uuid": "",
+                "lastMigration": 9,
+                "name": "Demo restraunt API",
+                "endpointPrefix": "",
+                "latency": 0,
+                "port": 3000,
+                "routes": [
+                    {
+                        "uuid": "",
+                        "documentation": "Get all users",
+                        "method": "get",
+                        "endpoint": "customer",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[\n  {\n    \"custId\": 1,\n    \"custName\": \"Abhishek\"\n  },\n  {\n    \"custId\": 2,\n    \"custName\": \"John\"\n  }\n]",
+                                "latency": 50,
+                                "statusCode": "200",
+                                "label": "Success",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Get a user",
+                        "method": "get",
+                        "endpoint": "users/:id",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"id\": 1,\n  \"firstname\": \"John\",\n  \"Lastname\": \"Snow\",\n  \"status\": \"Learning things\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "Get userId 1",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "params",
+                                        "modifier": "id",
+                                        "value": "1",
+                                        "isRegex": false
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"id\": 2,\n  \"firstname\": \"Daenerys\",\n  \"Lastname\": \"Targaryen\",\n  \"status\": \"Riding a dragon\"\n}",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "Get userId 2",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "params",
+                                        "modifier": "id",
+                                        "value": "2",
+                                        "isRegex": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Create a user",
+                        "method": "post",
+                        "endpoint": "saveOrder",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "{\n   \"orderNo\":\"200052\",\n   \"pMethod\":\"Cash\",\n   \"customerId\":\"Abhishek\",\n   \"gTotal\":52,\n   \"OrderItems\":[\n      {\n         \"itemId\":2,\n         \"itemName\":\"Chicken Tikka\",\n         \"itemQuantity\":\"2\",\n         \"itemPrice\":20,\n         \"itemTotal\":40\n      },\n      {\n         \"itemId\":3,\n         \"itemName\":\"Chicken Biryani\",\n         \"itemQuantity\":\"1\",\n         \"itemPrice\":12,\n         \"itemTotal\":12\n      }\n   ]\n}",
+                                "latency": 0,
+                                "statusCode": "201",
+                                "label": "Success",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "firstname",
+                                        "value": ".+",
+                                        "isRegex": true
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "",
+                                "body": "{\n  \"Error\": \"firstname is required\"\n}",
+                                "latency": 0,
+                                "statusCode": "400",
+                                "label": "Missing data",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "firstname",
+                                        "value": "^$",
+                                        "isRegex": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "Delete a user",
+                        "method": "delete",
+                        "endpoint": "users/:id",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "",
+                                "latency": 0,
+                                "statusCode": "204",
+                                "label": "User deleted",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": [
+                                    {
+                                        "target": "body",
+                                        "modifier": "firstname",
+                                        "value": ".*",
+                                        "isRegex": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "get all items",
+                        "method": "get",
+                        "endpoint": "items",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[\n    {   \n        \"itemId\": 1,\n        \"itemName\": \"Chicken Tikka\",\n        \"itemPrice\": 10\n    },\n    {   \n        \"itemId\": 2,\n        \"itemName\": \"Chicken Biryani\",\n        \"itemPrice\": 20\n    },\n    {   \n        \"itemId\": 3,\n        \"itemName\": \"Butter Paneer\",\n        \"itemPrice\": 12\n    },\n    {   \n        \"itemId\": 4,\n        \"itemName\": \"Dal Makhani\",\n        \"itemPrice\": 20\n    }\n]",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    {
+                        "uuid": "",
+                        "documentation": "",
+                        "method": "get",
+                        "endpoint": "savedOrder",
+                        "responses": [
+                            {
+                                "uuid": "",
+                                "body": "[{\n   \"orderNo\":\"200052\",\n   \"pMethod\":\"Cash\",\n   \"customerId\":\"Abhishek\",\n   \"gTotal\":52,\n   \"orderItems\":[\n      {\n         \"itemId\":2,\n         \"itemName\":\"Chicken Tikka\",\n         \"itemQuantity\":\"2\",\n         \"itemPrice\":20,\n         \"itemTotal\":40\n      },\n      {\n         \"itemId\":3,\n         \"itemName\":\"Chicken Biryani\",\n         \"itemQuantity\":\"1\",\n         \"itemPrice\":12,\n         \"itemTotal\":12\n      }\n   ]\n},\n{\n   \"orderNo\":\"200053\",\n   \"pMethod\":\"Cash\",\n   \"customerId\":\"Kiran\",\n   \"gTotal\":40,\n   \"orderItems\":[\n      {\n         \"itemId\":2,\n         \"itemName\":\"Chicken Tikka\",\n         \"itemQuantity\":\"2\",\n         \"itemPrice\":20,\n         \"itemTotal\":40\n      }\n   ]\n}\n]",
+                                "latency": 0,
+                                "statusCode": "200",
+                                "label": "",
+                                "headers": [
+                                    {
+                                        "key": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "filePath": "",
+                                "sendFileAsBody": false,
+                                "rules": []
+                            }
+                        ],
+                        "enabled": true
+                    }
+                ],
+                "proxyMode": false,
+                "proxyHost": "",
+                "https": false,
+                "cors": true,
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    },
+                    {
+                        "key": "",
+                        "value": ""
+                    }
+                ]
+            }
+        }
+    ]
+}
