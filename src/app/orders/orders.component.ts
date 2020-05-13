@@ -34,7 +34,6 @@ export class OrdersComponent implements OnInit {
   }
 
   editOrder(i: number) {
-    //debugger
     // this.router.navigate['/orderedit/:id', this.formdata[i].orderNo];
   }
 

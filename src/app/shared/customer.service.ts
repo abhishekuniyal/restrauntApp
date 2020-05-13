@@ -10,6 +10,6 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   getCustName(): any{
-    return this.http.get(environment.apiURL+'/customer').toPromise();
+    return this.http.get(environment.authURL+'/customer').toPromise();
   }
 }
