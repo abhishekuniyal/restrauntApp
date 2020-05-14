@@ -12,7 +12,11 @@ export class Auth implements CanActivate {
 
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const loggedinUser = this.authService.loggedinUser;
+        var loggedinUser:string = '';
+         this.authService.currentUser.subscribe(res =>{
+            loggedinUser = res as string;
+        });
+        debugger
         if(loggedinUser){
             return true
         }

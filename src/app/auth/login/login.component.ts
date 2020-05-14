@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
                           .pipe(first())
                           .subscribe(res =>{
                             this.isLoggedin = res;
+                            debugger
                             console.log('ress:'+res)
                             this.router.navigate(['order']);
                             },
