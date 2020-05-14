@@ -15,10 +15,11 @@ import { Token } from './token.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  
+
 
   loggedinUser: string;
-  private currentUserSubject: BehaviorSubject<any>
+  private currentUserSubject = new BehaviorSubject<any>(localStorage.getItem(staticData.LOGGED_IN_USER));
+  public currentUser:Observable<any> = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -36,16 +37,18 @@ export class AuthenticationService {
   }
 
   doLoginUser(userName: string, token: string) {
-    this.loggedinUser = userName;
-    this.storeToken(token);
+    this.currentUserSubject.next(userName);
+    this.storeToken(userName, token);
   }
-  storeToken(token: string) {
+  storeToken(userName:string, token: string) {
     //console.log('jwt:' + JSON.stringify(token))
+    localStorage.setItem(staticData.LOGGED_IN_USER, userName);
     localStorage.setItem(staticData.JWT_TOKEN, token);
   }
 
   logout() {
     localStorage.setItem(staticData.JWT_TOKEN, '');
-    this.loggedinUser = '';
-}
+    localStorage.setItem(staticData.LOGGED_IN_USER, '');
+    this.currentUserSubject.next('');
+  }
 }
